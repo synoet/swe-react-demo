@@ -8,16 +8,18 @@ import './App.css';
 function App() {
   return (
     <div className="root">
-      <Router>
-        <Switch>
-          <Route exact={true} path={'/'}>
-            <Home />
-          </Route>
-          <Route exact={true} path={'/rooms'}>
-            <Rooms />
-          </Route>
-        </Switch>
-      </Router>
+      <div className="content">
+        <Router>
+          <Switch>
+            <Route exact={true} path={'/'}>
+              <Home />
+            </Route>
+            <Route exact={true} path={'/rooms'}>
+              <Rooms />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
     </div>
   );
 }

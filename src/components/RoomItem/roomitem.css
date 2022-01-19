@@ -1,0 +1,9 @@
+.room-item {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  border: 1px solid #94A3B8;
+}
