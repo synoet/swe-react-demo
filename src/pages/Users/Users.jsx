@@ -2,34 +2,63 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
 
-import RoomItem from '../../components/RoomItem/RoomItem';
-
+import './users.css';
 
 export default function Users() {
   const [users, setUsers] = useState(undefined);
   const [error, setError] = useState(undefined);
 
-  const [refresh, setRefresh] = useState(undefined);
+  const [refresh, setRefresh] = useState(0);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newUserName, setNewUserName] = useState('');
+
   const history = useHistory();
 
   useEffect(() => {
     axios.get('https://demo-repo23.herokuapp.com/users/list')
       .then((response) => {
-        console.log(response.data);
         if (response.data){
           setUsers(response.data);
         }
       })
       .catch(error => {
-        console.log(error);
         setError(error);
+        console.log(error);
       });
-  }, [])
+  }, [refresh])
+
+  const handleCreateUser = async () => {
+    axios.post(`https://demo-repo23.herokuapp.com/users/create/${newUserName}`)
+      .then(() => {
+        setIsModalOpen(false);
+        setRefresh(refresh + 1);
+      })
+      .catch(error => {
+        setError(error);
+        console.log(error);
+      })
+  }
 
   return (
     <div className="content">
+      {isModalOpen && 
+        <div className="create-modal">
+          <input
+            className="user-input"
+            placeholder="User Name"
+            value={newUserName}
+            onChange={(e) => setNewUserName(e.target.value)}
+          />
+          <div className="create-actions">
+            <button className="button" onClick={handleCreateUser}>Create New User</button>
+            <button className="button" onClick={() => setIsModalOpen(false)}> Cancel </button>
+          </div>
+        </div>
+      }
+  
       <div className="rooms-header">
-        <h1>Rooms</h1>
+        <h1>Users</h1>
         <button
           onClick={() => history.push('/')}
           className="button"
@@ -45,17 +74,23 @@ export default function Users() {
       )}
 
       <div className="rooms-list">
-        {users ? users.map((room, index) => (
-          <RoomItem
-            key={`${room.roomName}-${index}`}
-            name={room.roomName}
-            userCount={room.num_users}
-          />
+        {users ? users.map((user, index) => (
+          <div 
+            className="user-item"
+            key={`${user.userName}-${index}`}
+          >
+            <p>{user.userName}</p>
+            <p>{index}</p>
+          </div>
         )) : (
           <div className="rooms-empty">
             <p>Sorry there are no rooms right now... Come back later </p>
           </div>
         )}
+      </div>
+
+      <div>
+        <button className="page-button" onClick={() => setIsModalOpen(true)}> Add New User </button>
       </div>
     </div>
   )
