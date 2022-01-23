@@ -28,7 +28,7 @@ export default function Users() {
       });
   }, [refresh])
 
-  const handleCreateUser = async () => {
+  const handleCreateUser = () => {
     axios.post(`https://demo-repo23.herokuapp.com/users/create/${newUserName}`)
       .then(() => {
         setIsModalOpen(false);
