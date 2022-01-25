@@ -1,7 +1,7 @@
 # SWE React Demo Project
 
 ### Clone the repository
-### `https://github.com/nysteo/swe-react-demo/`
+### `git clone https://github.com/nysteo/swe-react-demo/`
 
 ### CD into the repo
 ### `cd swe-react-demo`
