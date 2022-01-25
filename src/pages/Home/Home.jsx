@@ -27,12 +27,6 @@ export default function Home(){
       >
         View All Users
       </button> 
-      <button className="page-button">
-        Add a new Room
-      </button>
-      <button className="page-button">
-        Add a new User
-      </button>
     </div>
   );
 };
