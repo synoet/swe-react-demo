@@ -3,6 +3,7 @@ import axios from 'axios';
 import {useHistory} from 'react-router-dom';
 
 import RoomItem from '../../components/RoomItem/RoomItem';
+import PageTitle from '../../components/PageTitle/PageTitle';
 
 import './rooms.css';
 
@@ -61,7 +62,9 @@ export default function Rooms() {
       }
 
       <div className="rooms-header">
-        <h1>Rooms</h1>
+        <PageTitle
+          text="Rooms"
+        />
         <button
           onClick={() => history.push('/')}
           className="button"
