@@ -1,10 +1,14 @@
 import React from 'react';
 
-// import './pagetitle.css';
+import './pagetitle.css';
 
 export default function PageTitle({text}) {
   return (
-    <h1>{text}</h1>
+    <div>
+      <h1 className="page-title">
+      {text}
+      </h1>
+    </div>
   );
 }
 
