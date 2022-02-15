@@ -4,6 +4,7 @@ import {useHistory} from 'react-router-dom';
 
 import RoomItem from '../../components/RoomItem/RoomItem';
 import PageTitle from '../../components/PageTitle/PageTitle';
+import {backendurl} from '../../config';
 
 import './rooms.css';
 
@@ -19,7 +20,7 @@ export default function Rooms() {
   const history = useHistory();
 
   useEffect(() => {
-    axios.get('https://demo-repo23.herokuapp.com/rooms/list')
+    axios.get(`${backendurl}/rooms/list`)
       .then((response) => {
         console.log(response.data);
         if (response.data){
@@ -33,7 +34,7 @@ export default function Rooms() {
   }, [refresh])
 
   const handleCreateRoom = () => {
-    axios.post(`https://demo-repo23.herokuapp.com/rooms/create/${newRoomName}`)
+    axios.post(`${backendurl}/rooms/create/${newRoomName}`)
       .then(() => {
         setIsModalOpen(false);
         setRefresh(refresh + 1);

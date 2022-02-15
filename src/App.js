@@ -5,9 +5,12 @@ import Home from './pages/Home/Home';
 import Rooms from './pages/Rooms/Rooms';
 import Users from './pages/Users/Users';
 
+import {backendurl} from './config';
+
 import './App.css';
 
 function App() {
+  console.log(backendurl);
   return (
     <div className="root">
       <div className="content">

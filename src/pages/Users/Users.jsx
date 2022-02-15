@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
+import {backendurl} from '../../config';
 
 import './users.css';
 
@@ -16,7 +17,7 @@ export default function Users() {
   const history = useHistory();
 
   useEffect(() => {
-    axios.get('https://demo-repo23.herokuapp.com/users/list')
+    axios.get(`${backendurl}/users/list`)
       .then((response) => {
         if (response.data){
           setUsers(response.data);
@@ -29,7 +30,7 @@ export default function Users() {
   }, [refresh])
 
   const handleCreateUser = () => {
-    axios.post(`https://demo-repo23.herokuapp.com/users/create/${newUserName}`)
+    axios.post(`${backendurl}/users/create/${newUserName}`)
       .then(() => {
         setIsModalOpen(false);
         setRefresh(refresh + 1);
