@@ -11,6 +11,7 @@ export default function Home(){
   return (
     <div className="content">
       <h1>🤗 SWE React Demo </h1>
+      <p> Hello from class </p>
       <div>
         <p className="quote">"A list is only as strong as its weakest link"</p>
         <p className="quote-author">- Donald Knuth</p>
